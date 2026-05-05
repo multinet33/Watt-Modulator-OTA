@@ -1,13 +1,22 @@
 {
-  "_comment": "Watt-Modulator OTA pull manifest (variantes ESP32 uniquement, ESP8266 reste sur ElegantOTA). Lu par le firmware Watt-Modulator via raw.githubusercontent.com. SHA-256 = hash du firmware.bin sortie de pio run.",
-  "_doc": "Format : pour chaque firmware (modulator), lister les envs supportés (ESP32 only). Le device matche son env via build_flag BOARD_ENV. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull.",
+  "_comment": "Watt-Modulator OTA pull manifest (variantes ESP32 uniquement, ESP8266 reste sur ElegantOTA). Lu par le firmware Watt-Modulator via raw.githubusercontent.com.",
+  "_doc": "Format : pour chaque firmware (modulator), lister les envs ESP32 supportés. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull.",
   "modulator": {
     "version": "2026.05",
-    "_test_phase_note": "build_fw=9999 et build_fs=9999 sentinelles pendant la phase de test. Skeleton initial.",
+    "_test_phase_note": "build_fw=9999 et build_fs=9999 sentinelles pendant la phase de test EVO-104 portage. Les binaires pointés sont FW79+FS64 arduino-esp32dev-makerfabs (WROOM32).",
     "build_fw": 9999,
     "build_fs": 9999,
-    "released_at": "2026-05-05T00:00:00Z",
-    "envs": {},
-    "changelog": "Skeleton initial — repo créé pour portage EVO-104 OTA pull sur watt-modulator (ESP32 uniquement). À peupler après premier build des variantes ESP32."
+    "released_at": "2026-05-05T08:40:00Z",
+    "envs": {
+      "arduino-esp32dev-makerfabs": {
+        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v79/firmware-arduino-esp32dev-makerfabs.bin",
+        "sha256": "5e8795d5e291d483543d7c11feee96d0eb9cf08da28c3325b6a7b5c31749fbc4",
+        "size": 1288240,
+        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v79/spiffs-arduino-esp32dev-makerfabs.bin",
+        "filesystem_sha256": "f62ce63c73ca62b9b30143a90987708b7c5f5c9a2d715dc59df8e54076a4525a",
+        "filesystem_size": 1441792
+      }
+    },
+    "changelog": "FW79+FS64 / EVO-104 portage initial — pipeline OTA pull intégré sur ESP32 WROOM32 (env arduino-esp32dev-makerfabs). esp_partition_write direct pour FS, recovery PROGMEM, modal UX label inline + striped+animated bar, pollUntilReady strict 60s. SPÉCIFICITÉ DIMMER : safety shutdown SSR avant section critique (set_power(0) + outputPin/2/3 LOW + 500ms pause) — évite glitch AC pendant 2-3 min du pipeline. Tasks suspendues : oled_task, cooler_32, get_dimmer_child_power_32, mqttdallas_32. Tout le code OTA est sous #if defined(ESP32) || defined(ESP32ETH) → les envs ESP8266 (PowerSupply2021/2022) ne sont pas affectés et restent sur ElegantOTA classique."
   }
 }
