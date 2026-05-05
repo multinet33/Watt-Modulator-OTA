@@ -13,7 +13,7 @@
         "sha256": "5e8795d5e291d483543d7c11feee96d0eb9cf08da28c3325b6a7b5c31749fbc4",
         "size": 1288240,
         "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v79/spiffs-arduino-esp32dev-makerfabs.bin",
-        "filesystem_sha256": "f62ce63c73ca62b9b30143a90987708b7c5f5c9a2d715dc59df8e54076a4525a",
+        "filesystem_sha256": "c93417ddcc3873bf541031465a9af221858096b83ca144e7ab2d06d0caca75e7",
         "filesystem_size": 1441792
       }
     },
