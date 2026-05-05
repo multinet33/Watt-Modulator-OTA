@@ -1,0 +1,13 @@
+{
+  "_comment": "Watt-Modulator OTA pull manifest (variantes ESP32 uniquement, ESP8266 reste sur ElegantOTA). Lu par le firmware Watt-Modulator via raw.githubusercontent.com. SHA-256 = hash du firmware.bin sortie de pio run.",
+  "_doc": "Format : pour chaque firmware (modulator), lister les envs supportés (ESP32 only). Le device matche son env via build_flag BOARD_ENV. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull.",
+  "modulator": {
+    "version": "2026.05",
+    "_test_phase_note": "build_fw=9999 et build_fs=9999 sentinelles pendant la phase de test. Skeleton initial.",
+    "build_fw": 9999,
+    "build_fs": 9999,
+    "released_at": "2026-05-05T00:00:00Z",
+    "envs": {},
+    "changelog": "Skeleton initial — repo créé pour portage EVO-104 OTA pull sur watt-modulator (ESP32 uniquement). À peupler après premier build des variantes ESP32."
+  }
+}
