@@ -1,29 +1,23 @@
 {
   "_comment": "Watt-Modulator OTA pull manifest (variantes ESP32 uniquement, ESP8266 reste sur ElegantOTA). Lu par le firmware Watt-Modulator via raw.githubusercontent.com.",
-  "_doc": "Format : pour chaque firmware (modulator), lister les envs ESP32 supportés. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull.",
+  "_doc": "Format : pour chaque firmware (modulator), lister les envs ESP32 supportés. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull. v110 = livraison FIRMWARE SEUL (pas de champs filesystem_*) : correctif télémétrie, aucun asset web modifié → le FS du device reste inchangé.",
   "modulator": {
-    "version": "2026.04",
-    "build_fw": 104,
-    "build_fs": 78,
-    "released_at": "2026-05-14T17:55:00Z",
+    "version": "2026.07",
+    "build_fw": 110,
+    "build_fs": 83,
+    "released_at": "2026-07-17T11:10:25Z",
     "envs": {
       "arduino-esp32dev-makerfabs": {
-        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v104/firmware-arduino-esp32dev-makerfabs.bin",
-        "sha256": "9b275ce6fd62c631967149b04355522fbd9c17709ff8679b59677b9b55011ca7",
-        "size": 1312176,
-        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v104/spiffs-arduino-esp32dev-makerfabs.bin",
-        "filesystem_sha256": "2e42aeead94d5ea88f44abf6d562d26a7c0efc92ab308df8b32c5f3136db5dd4",
-        "filesystem_size": 1441792
+        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v110/firmware-arduino-esp32dev-makerfabs.bin",
+        "sha256": "091e35a9a534421731a35fc19bd4e5af1e94f3dc2b597b504ab408779cb91ffd",
+        "size": 1320144
       },
       "esp32-s3-devkitc-1": {
-        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v104/firmware-esp32-s3-devkitc-1.bin",
-        "sha256": "de1883fb15112c8bfee01c4ed1f151754ba10c3f2b4e2ab3ad4338afa59f0769",
-        "size": 1258448,
-        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v104/spiffs-esp32-s3-devkitc-1.bin",
-        "filesystem_sha256": "c8a397c928d1d05c41d091d18a3a1d1fc38ed2e8d19ced7ba1794eb6e22b94ba",
-        "filesystem_size": 3538944
+        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v110/firmware-esp32-s3-devkitc-1.bin",
+        "sha256": "591ea58e1b37baa366978a883399dfb34593f2298271507511625607c388702e",
+        "size": 1266256
       }
     },
-    "changelog": "FW104+FS78 — Remontée ZC (zero-cross) bout-en-bout : modulator expose zc/freq/present/pulses_5m via /state + /state_chain + /chain_quick ; Guardian remonte dans /modulator/chain pour badge carte Dimmers. Bypass auto si ZC perdu (Robotdyn KO/coupé) : capability_zc=true + zc_present=false >30s → local=0W + transmet toute la puissance reçue au fils (la chaîne s'auto-cicatrise). Nouveau env esp32-s3-devkitc-1 (N16R8 16MB flash + 8MB PSRAM octale). Sliding window 5min pour les pulses (immune au rollover). OLED I2C : pins configurables via /config + endpoint /oled_rescan. i18n 5 langues à parité 100%."
+    "changelog": "FW110 — BUG-051 : correctif télémétrie MQTT. Les capteurs Puissance gérée (watt), watt_total et Niveau dimmer affichaient parfois une valeur négative ou supérieure à la charge (ils remontaient la consigne brute non bornée). Ils reflètent désormais la puissance RÉELLEMENT appliquée au triac (unified_dimmer.get_power(), clampée 0..maxpow). FIRMWARE SEUL : le filesystem/interface web reste inchangé (FS83)."
   }
 }
