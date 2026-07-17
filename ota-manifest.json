@@ -1,29 +1,29 @@
 {
   "_comment": "Watt-Modulator OTA pull manifest (variantes ESP32 uniquement, ESP8266 reste sur ElegantOTA). Lu par le firmware Watt-Modulator via raw.githubusercontent.com.",
-  "_doc": "Format : pour chaque firmware (modulator), lister les envs ESP32 supportés + leur firmware ET filesystem. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull. v110 = FW110 (fix télémétrie BUG-051) + FS83 (carte Relais cloud FS81 + topbar sticky FS82 + i18n [data-i18n-html] FS83). makerfabs : SPIFFS 512KB (table partitions_4MB_modulator.csv, EVO-111 P5).",
+  "_doc": "Format : pour chaque firmware (modulator), lister les envs ESP32 supportés + leur firmware ET filesystem. Les variantes ESP8266 (PowerSupply2021/2022) ne sont PAS dans ce manifest — heap trop serré pour le pipeline OTA pull. v111 = FW111 (fix affichage FS runtime dans la modale OTA, BUG-047) + FS83 (inchangé depuis v110). makerfabs : SPIFFS 512KB (table partitions_4MB_modulator.csv, EVO-111 P5).",
   "modulator": {
     "version": "2026.07",
-    "build_fw": 110,
+    "build_fw": 111,
     "build_fs": 83,
-    "released_at": "2026-07-17T11:10:25Z",
+    "released_at": "2026-07-17T11:35:21Z",
     "envs": {
       "arduino-esp32dev-makerfabs": {
-        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v110/firmware-arduino-esp32dev-makerfabs.bin",
-        "sha256": "091e35a9a534421731a35fc19bd4e5af1e94f3dc2b597b504ab408779cb91ffd",
+        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v111/firmware-arduino-esp32dev-makerfabs.bin",
+        "sha256": "9fe713672fbb0399c35481e66cccfe6d976bca44681352ccfb578202e5ccbc9c",
         "size": 1320144,
-        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v110/spiffs-arduino-esp32dev-makerfabs.bin",
+        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v111/spiffs-arduino-esp32dev-makerfabs.bin",
         "filesystem_sha256": "dc974261c603f58b0bb3ffd89e20edeec224d708a514a72d334b5dea10d0094a",
         "filesystem_size": 524288
       },
       "esp32-s3-devkitc-1": {
-        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v110/firmware-esp32-s3-devkitc-1.bin",
-        "sha256": "591ea58e1b37baa366978a883399dfb34593f2298271507511625607c388702e",
-        "size": 1266256,
-        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v110/spiffs-esp32-s3-devkitc-1.bin",
+        "firmware_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v111/firmware-esp32-s3-devkitc-1.bin",
+        "sha256": "22e761472ca5ce562a68b8ba4347b8741412a36afc8b82898202b50d7c763d80",
+        "size": 1266272,
+        "filesystem_url": "https://github.com/multinet33/Watt-Modulator-OTA/releases/download/v111/spiffs-esp32-s3-devkitc-1.bin",
         "filesystem_sha256": "631eb3a554a69c695cf9e9dd7539a6f8e985295ceeda1963b869d36274a90447",
         "filesystem_size": 3538944
       }
     },
-    "changelog": "FW110+FS83. FW110 — BUG-051 : correctif télémétrie MQTT (capteurs Puissance gérée/watt_total/Niveau dimmer = puissance RÉELLE appliquée au triac, clampée 0..maxpow, au lieu de la consigne brute → fini le négatif / >charge dans HA). FS83 — carte Relais cloud dans config.html (FS81, ESP32), topbar sticky (FS82), support i18n [data-i18n-html] (FS83)."
+    "changelog": "FW111+FS83. FW111 — BUG-047 : la modale OTA « Version actuelle » affiche désormais le FS RÉELLEMENT chargé (runtime) au lieu du FS attendu par le firmware (BUILD_FS) — plus d'incohérence FS83/FS80 avec la page d'identité ; + VERSION alignée 2026.07. FS83 (inchangé) — carte Relais cloud (config.html), topbar sticky, i18n [data-i18n-html]. FW110 — BUG-051 : télémétrie MQTT puissance = puissance réelle appliquée au triac (fini le négatif / >charge dans HA)."
   }
 }
